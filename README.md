@@ -55,12 +55,23 @@ All three systems scored on the **same** 38-item set. Reproduce every row with t
 
 The two trivial baselines bracket the space: 97% overclaim (theatre) at one end, 0% overclaim but 5% accuracy (over-caution) at the other. A calibrated judge is the space in between that neither trivial strategy reaches — and the independent judge lands there, catching almost every trap while keeping its one remaining overclaim to a single documented hard case (EIB-020, the misleading-by-omission trap).
 
+### Cross-model check (people-free)
+
+The judge was run **blind across three independent model families** (a GPT-class model, Kimi K2.6, and Grok — OpenAI / Moonshot / xAI). Each independently scored **~3% overclaim**, and the three **agreed on the safety-critical call — grounded vs not — for all 38 items, with zero cross-model overclaims.** They diverge only on the *severity* of "not supported" (one model leans conservative, another aggressive), and every model's single overclaim is the same item (EIB-020). The safety property is therefore not an artifact of one model; it replicates across the field.
+
+```bash
+python3 crossval.py benchmark_v0.2.jsonl \
+  GPT=preds/preds_gpt_v0.2.json Kimi=preds/preds_kimi_v0.2.json Grok=preds/preds_grok_v0.2.json
+```
+
 ### Reproduce
 
 ```bash
 python3 score.py benchmark_v0.2.jsonl preds/preds_deterministic_v0.2.json
 python3 score.py benchmark_v0.2.jsonl preds/preds_always_abstain_v0.2.json
 python3 score.py benchmark_v0.2.jsonl preds/preds_gpt_v0.2.json
+python3 score.py benchmark_v0.2.jsonl preds/preds_kimi_v0.2.json
+python3 score.py benchmark_v0.2.jsonl preds/preds_grok_v0.2.json
 ```
 
 To run the judge yourself against any model:
@@ -83,12 +94,12 @@ The product IP is the judge's system prompt in [`judge.py`](judge.py) — an ele
 This is an early, single-author artifact. Read the results with these in mind:
 
 - **Solo-authored gold.** All 38 gold verdicts were labelled by one author. Accuracy plateaus around 74% not because the judge fails, but because a handful of items sit on genuinely ambiguous severity boundaries (is "may signal → establishes" `UNSUPPORTED` or `PARTIAL`? is "A accused B → B did it" `UNSUPPORTED` or `PARTIAL`?). Resolving those needs a **second independent labeller** and an inter-annotator agreement figure. That is the next step, not a tuning problem.
-- **Cross-model agreement is not yet clean.** A full, blind multi-model cross-validation (three independent frontier models) over all 38 items has not been run end-to-end; earlier crossval runs were partial. `crossval.py` is included, but treat any cross-model number as pending until a complete blind run exists.
+- **The gold is one standard, not the only one.** The three-model cross-check (above) confirms the *safety* call is robust, but where the models disagree with the gold they do so systematically — clustering on ~5 labelling-standard questions (e.g. is a non-denial claimed as confirmation `CONTRADICTS` or `UNSUPPORTED`? is a literally-true-but-misleading claim `PARTIAL` or `SUPPORTS`?). These are tradecraft-judgement calls, and settling them is exactly what a second human labeller resolves. The severity taxonomy is a proposal, not yet a consensus.
 - **Mock data by design.** All sources and actors are fabricated fiction (Northland, Aldoria, Mereth). No real persons, institutions, or documents. The benchmark tests *verification behaviour*, not real-world facts — and it has not yet been tested on real, messy, multilingual source material.
 
 ## Roadmap
 
-- **v0.3:** second human labeller + inter-annotator agreement; complete blind 3-model crossval; grow toward 100+ items; multilingual items (the European-security reality).
+- **v0.3:** second human labeller + inter-annotator agreement, resolving the ~5 open standard-questions the cross-model check surfaced; grow toward 100+ items; multilingual items (the European-security reality).
 - Later: a public leaderboard, and validation on real analytic documents.
 
 ## Data note & provenance

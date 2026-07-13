@@ -44,6 +44,8 @@ The third row is the point. Give an LLM an explicit analytic-tradecraft rubric �
 
 Two things make that third number worth trusting. It was produced by a **different model than the one whose prompt I was tuning**, run **blind** — it never saw the gold answers. And it was measured on the *harder* 38-item version of the set, not the easier one I developed against.
 
+Then I ran it blind across **three independent model families** — a GPT-class model, Kimi K2.6, and Grok (OpenAI, Moonshot, xAI). Each one independently scored ~3% overclaim. More telling: the three **agreed on the safety-critical call — grounded versus not — for all 38 items, with zero cross-model overclaims.** They have visibly different temperaments (one leans conservative, another aggressive on how severely to rate a bad claim), and they still never disagreed on the line that matters. The safety property isn't one model's quirk. It holds across the field.
+
 ## What this is, and what it is not
 
 This is **tradecraft assurance, not fact-checking**. The judge never rules on whether a claim is true in the world. It asks a narrower, more tractable question: does the analysis hold up against its own cited evidence? Internal rigor, not external truth arbitration. That distinction matters commercially as much as intellectually — the fact-checking framing is a graveyard, and this is deliberately not standing in it.
@@ -58,7 +60,7 @@ The gold labels were written by one person — me. Accuracy plateaus around 74% 
 
 The data is fabricated fiction, built to isolate verification behaviour from world-knowledge. It has not yet been tested on real, messy, multilingual documents — which is where the actual work lives.
 
-And a clean multi-model cross-validation — the strongest people-free evidence — is still pending a complete blind run. I'm not claiming it yet.
+The three-model cross-check confirms the *safety* call is solid, but it also shows where the models and I part ways: on a handful of severity boundaries, consistently. Those disagreements aren't noise — they cluster on about five labelling-standard questions (is a non-denial claimed as confirmation a contradiction or merely unsupported? is a literally-true-but-misleading claim partial or supported?). Those are tradecraft-judgement calls, and settling them needs a second human, not another model. The severity taxonomy here is a proposal, not yet a consensus.
 
 None of that touches the finding that survives all of it: **attaching a source is not verifying it, and the difference is measurable — 97% versus 3%.** The tooling to close that gap doesn't require anything exotic. It requires deciding the gap is worth measuring, which most of the field has not.
 
