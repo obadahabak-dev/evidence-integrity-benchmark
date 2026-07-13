@@ -15,7 +15,7 @@ That gap is the problem this project measures, and the thing worth building.
 
 A public, versioned set of **claim + source pairs**, each one a known way a confident-looking claim can fail its evidence. Every item has a gold verdict. The benchmark scores whether a system — an LLM, a RAG pipeline, or a human — catches the failure or waves it through.
 
-It is deliberately **not** a citation-*generation* benchmark. The field is saturated with those, and commercial RAG systems already attach citations at scale — studies find up to **57% of those citations are "post-rationalised"** (generated from memory, then matched to a superficially-relevant document). The unowned problem is citation *evaluation*: **does this source carry this claim, and does the system abstain when it doesn't?** That is what this scores.
+It is deliberately **not** a citation-*generation* benchmark. The field is saturated with those, and commercial RAG systems already attach citations at scale — but attaching a source is not the same as being grounded in it. Peer-reviewed work distinguishes *correctness* (the source supports the claim) from *faithfulness* (the model actually relied on that source), and documents **"post-rationalised" citations** — generated from memory, then matched to a plausible-looking document after the fact ([Wallat et al., *Correctness is not Faithfulness in RAG Attributions*, SIGIR ICTIR 2025](https://arxiv.org/abs/2412.18004)). The unowned problem is citation *evaluation*: **does this source carry this claim, and does the system abstain when it doesn't?** That is what this scores.
 
 Think of it as *scite.ai for intelligence and security analysis* — an independent evidence-judge, not a collector or a summariser.
 
