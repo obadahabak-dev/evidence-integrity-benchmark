@@ -1,0 +1,171 @@
+You are an evidence-integrity judge for analytic tradecraft. For each item you get a SOURCE and a CLAIM. Decide whether the source supports the claim.
+
+RULES:
+1. Judge ONLY from the provided source text. Do NOT use outside/world knowledge. If the source lacks the information, you cannot assess it, even if you believe the claim is true.
+2. If the source is empty/none, or does not address the claim's subject, answer CANNOT_ASSESS.
+3. Preserve modality: "may", "possible", "low confidence", "cannot be ruled out", "unlikely", "unclear" do NOT support a claim stated as certain. "unconfirmed" -> "confirmed" is a CONTRADICTS. A faithful restatement that KEEPS the stated confidence = SUPPORTS.
+4. Distinguish reported fact from inference: if the source supports a detail but the claim adds an interpretive leap (intent, prediction, causation, scale) the source does not make, answer PARTIAL.
+5. A non-denial, "no comment", "declined to confirm", or "neither confirmed nor denied" is NOT a confirmation.
+6. Do not credit fabricated authority/corroboration: anonymous/single/unverified source called official/multiple/confirmed is not supported. An accusation BY one party that another did X does not establish X. Satire/jokes are not reporting.
+7. Do not inflate quantifiers or fabricate precision: "some" is not "all/most"; "roughly" is not "exactly"; a falling number is not a majority.
+8. Faithful-representation: if a claim is literally traceable to the source but materially misrepresents its overall finding by omitting decisive context, answer PARTIAL.
+9. When uncertain, choose the more conservative verdict. Wrongly saying SUPPORTS is far worse than under-rating.
+
+VERDICTS (exactly one word each): SUPPORTS | PARTIAL | UNSUPPORTED | CONTRADICTS | CANNOT_ASSESS
+This is tradecraft assurance, not fact-checking. Judge source support only.
+
+Output ONLY a code block, one line per item: EIB-001: VERDICT
+
+=== ITEMS ===
+
+[EIB-001]
+SOURCE: The Northland MoD stated it conducted a snap readiness exercise involving reserve units within its own territory in March.
+CLAIM: Northland conducted a snap readiness exercise in March.
+
+[EIB-002]
+SOURCE: Per two named diplomats cited by the outlet, talks are scheduled for next month.
+CLAIM: Talks are scheduled for next month, according to the report.
+
+[EIB-003]
+SOURCE: The communiqué announced a 3% increase in defence exports for the year.
+CLAIM: Defence exports rose 3% that year, per the communiqué.
+
+[EIB-004]
+SOURCE: The MoD characterised the exercise as routine and defensive and explicitly denied any offensive intent.
+CLAIM: The MoD confirmed the exercise is preparation for an offensive operation.
+
+[EIB-005]
+SOURCE: The minister stated no mobilisation order had been issued.
+CLAIM: The minister confirmed a mobilisation order was issued.
+
+[EIB-006]
+SOURCE: The exercise involved units from the Eastern Military District only.
+CLAIM: Nationwide forces were mobilised for the exercise.
+
+[EIB-007]
+SOURCE: An analyst wrote that escalation 'cannot be ruled out,' while noting the evidence base is thin and speculative.
+CLAIM: It is beyond dispute that Northland intends to escalate.
+
+[EIB-008]
+SOURCE: The report says the deployment 'may signal' a doctrinal shift, though alternative explanations remain.
+CLAIM: The report establishes that a doctrinal shift has occurred.
+
+[EIB-009]
+SOURCE: An assessment judged, with low confidence, that Aldoria may intend a limited incursion.
+CLAIM: Intelligence confirms Aldoria intends an incursion.
+
+[EIB-010]
+SOURCE: Analysts assess it is 'possible but unlikely' that the shipment contained warheads.
+CLAIM: Analysts assess the shipment likely contained warheads.
+
+[EIB-011]
+SOURCE: Asked about reports of troop movements, the spokesperson said only that the ministry 'does not comment on operational matters.'
+CLAIM: Officials confirmed the troop movements.
+
+[EIB-012]
+SOURCE: The government 'neither confirmed nor denied' the presence of the systems.
+CLAIM: The government acknowledged the systems' presence.
+
+[EIB-013]
+SOURCE: [Anonymous forum post, unverified] Escalation is imminent within days.
+CLAIM: Per an official bulletin, escalation is imminent within days.
+
+[EIB-014]
+SOURCE: A single unnamed social-media account alleged secret nuclear transfers.
+CLAIM: Multiple sources confirm nuclear transfers.
+
+[EIB-015]
+SOURCE: The communiqué reaffirmed the existing deterrence posture and announced a rise in defence exports.
+CLAIM: Aldoria raised its nuclear alert level.
+
+[EIB-016]
+SOURCE: (none provided)
+CLAIM: Russia placed tactical nuclear warheads in Belarus.
+
+[EIB-017]
+SOURCE: The white paper focuses exclusively on cyber-defence budgets for the coming year.
+CLAIM: The white paper calls for offensive cyber operations.
+
+[EIB-018]
+SOURCE: Imagery showed approximately 5,000 troops and vehicles at a training range 40 km from the border.
+CLAIM: A large-scale mobilisation near the border signals an imminent invasion.
+
+[EIB-019]
+SOURCE: The ministry confirmed a new radar installation became operational near the coast.
+CLAIM: The new radar proves preparation for a naval blockade.
+
+[EIB-020]
+SOURCE: The minister said tensions are 'higher than in a decade,' but added both governments remain committed to dialogue and no mobilisation order was given.
+CLAIM: The minister confirmed tensions are higher than in a decade.
+
+[EIB-021]
+SOURCE: Polls show 60% support sanctions, though support drops to 30% when economic costs are specified.
+CLAIM: A clear majority supports sanctions.
+
+[EIB-022]
+SOURCE: In 2023 the state announced intent to deploy the systems; deployment status since has not been independently verified.
+CLAIM: The systems are currently deployed and operational.
+
+[EIB-023]
+SOURCE: Some officials expressed concern about the deployment.
+CLAIM: Officials are unanimously alarmed by the deployment.
+
+[EIB-024]
+SOURCE: Analysts estimated the force at roughly brigade strength.
+CLAIM: The force numbered exactly 4,200 troops.
+
+[EIB-025]
+SOURCE: Tensions rose in the same month the currency fell.
+CLAIM: The currency fall was caused by the rising tensions.
+
+[EIB-026]
+SOURCE: The sanctions target three named individuals.
+CLAIM: The sanctions target the entire financial sector.
+
+[EIB-027]
+SOURCE: Country A accused Country B of carrying out the cyberattack.
+CLAIM: Country B carried out the cyberattack.
+
+[EIB-028]
+SOURCE: It remains unclear whether the missile test was successful.
+CLAIM: The missile test succeeded.
+
+[EIB-029]
+SOURCE: There are unconfirmed reports of casualties.
+CLAIM: Casualties have been confirmed.
+
+[EIB-030]
+SOURCE: The treaty text specifies a five-year duration.
+CLAIM: The treaty runs for five years, per its text.
+
+[EIB-031]
+SOURCE: The report documents a troop buildup; it does not state a purpose.
+CLAIM: The buildup is for a scheduled exercise.
+
+[EIB-032]
+SOURCE: As of last year, the base was under construction.
+CLAIM: The base is now fully operational.
+
+[EIB-033]
+SOURCE: The briefing covered logistics and supply chains only.
+CLAIM: The briefing revealed a planned offensive.
+
+[EIB-034]
+SOURCE: The official declined to elaborate when asked to confirm the account.
+CLAIM: The official confirmed the account.
+
+[EIB-035]
+SOURCE: A satirical blog joked about an imminent coup.
+CLAIM: Reports indicate an imminent coup.
+
+[EIB-036]
+SOURCE: Two of the five conditions in the agreement have been met.
+CLAIM: The agreement has been substantially implemented.
+
+[EIB-037]
+SOURCE: Support for the measure fell to 40%.
+CLAIM: A majority now supports the measure.
+
+[EIB-038]
+SOURCE: The agency assessed, with high confidence, that the facility is a weapons site.
+CLAIM: The agency assessed with high confidence that the facility is a weapons site.

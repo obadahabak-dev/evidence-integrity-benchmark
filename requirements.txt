@@ -1,0 +1,4 @@
+# Only needed to run judge.py against a live model.
+# Scoring (score.py, crossval.py) uses the standard library only — no install required.
+anthropic>=0.40     # for --provider anthropic
+openai>=1.40        # for --provider openai
